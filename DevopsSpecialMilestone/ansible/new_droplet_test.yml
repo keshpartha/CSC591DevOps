@@ -1,0 +1,66 @@
+---
+- name: Provision - Droplet
+  hosts: digitalocean
+
+  vars:
+    do_token: "{{ lookup('env', 'DO_API_TOKEN') }}"
+
+  tasks:
+
+  - name: ensure ssh key exists
+    user: >
+      name={{ ansible_user_id }}
+      generate_ssh_key=yes
+      ssh_key_file=.ssh/id_rsa
+
+  - name: ensure key exists at DigitalOcean
+    digital_ocean: >
+      state=present
+      command=ssh
+      name=my_ssh_key
+      ssh_pub_key={{ lookup('file', '~/.ssh/id_rsa.pub') }}
+      api_token={{ do_token }}
+    register: my_ssh_key
+
+  - name: ensure droplet one exists
+    digital_ocean: >
+      state=present
+      command=droplet
+      unique_name=yes
+      name=droplet-one
+      size_id=512mb
+      region_id=sgp1
+      image_id=ubuntu-14-04-x64
+      ssh_key_ids={{ my_ssh_key.ssh_key.id }}
+      api_token={{ do_token }}
+    register: droplet_one
+
+  - name: Add new droplet to host group
+    local_action: add_host hostname={{ droplet_one.droplet.ip_address }} groupname=launched
+  
+  - name: Wait for SSH to come up
+    local_action: wait_for host={{ droplet_one.droplet.ip_address }} port=22 delay=60 timeout=320 state=started 
+  
+- name: Setup
+  hosts: launched
+  gather_facts: True
+  tasks:
+    - name: Install Packages 
+      apt: name={{ item }} update_cache=yes state=latest
+      with_items:
+        - build-essential
+        - npm
+        - git
+
+    - name: get nodejs setup 
+      sudo: yes
+      shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+    - name: install nodejs and npm
+      sudo: yes
+      shell: apt-get install -y nodejs
+
+    - name: Install forever
+      npm: name={{ item }} global=yes state=present
+      with_items:
+        - forever

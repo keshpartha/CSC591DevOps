@@ -1,0 +1,10 @@
+[JenkinsServer]
+JenkinsServer ansible_ssh_host=104.131.81.129 ansible_ssh_user=root
+[CanaryServer]
+CanaryServer ansible_ssh_host=67.205.144.114 ansible_ssh_user=root
+[RedisServer]
+RedisServer ansible_ssh_host=67.205.130.2 ansible_ssh_user=root
+[ProxyServer]
+ProxyServer ansible_ssh_host=67.205.141.175 ansible_ssh_user=root
+[AppServer]
+AppServer ansible_ssh_host=67.205.152.21 ansible_ssh_user=root

@@ -1,0 +1,2 @@
+[ScaledServer]
+ScaledServer ansible_ssh_host=67.205.168.34 ansible_ssh_user=root

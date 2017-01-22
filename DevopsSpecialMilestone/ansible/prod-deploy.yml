@@ -1,0 +1,22 @@
+---
+
+- hosts: AppServer
+  tasks:
+
+    - name: Stop all forever scripts
+      command: forever stopall
+
+    - name: Remove old code
+      command: rm -rf /src/SimpleSetsWebApp
+
+    - name: Cloning Simple Set Repository
+      git: repo=https://github.com/nikunj91/SimpleSetsWebApp.git dest=/src/SimpleSetsWebApp
+
+    - name: npm install
+      npm: path=/src/SimpleSetsWebApp/
+
+    - name: Start AppServer
+      command: forever start /src/SimpleSetsWebApp/lib/simplesets_webapp.js
+
+    - name: Start monitoring
+      command: forever start -c python ./monitor.py

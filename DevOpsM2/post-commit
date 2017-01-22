@@ -1,0 +1,6 @@
+#!/bin/sh
+
+./node_modules/.bin/istanbul cover --report cobertura node_modules/.bin/_mocha test
+./node_modules/jshint/bin/jshint lib/simplesets.js --reporter=jslint > jshint.xml | true
+
+python postcommithelper.py

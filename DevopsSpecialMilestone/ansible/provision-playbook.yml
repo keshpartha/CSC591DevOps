@@ -1,0 +1,38 @@
+---
+- hosts: RedisServer
+
+  roles:
+      - git
+      - redis
+      - nodejs
+      - redisconf
+      - featureflags
+
+- hosts: AppServer
+
+  roles:
+      - git
+      - nodejs
+      - redisconf
+      - monitoring
+
+- hosts: CanaryServer
+
+  roles:
+      - git
+      - nodejs
+      - redisconf
+      - monitoring
+
+- hosts: ProxyServer
+  roles:
+      - git
+      - nodejs
+      - redisconf
+      - proxy
+
+- hosts: JenkinsServer
+  tasks:
+    - name: Copy inventory file
+      template: src=./inventory dest=/src/ansible owner=root group=root mode=0644
+      sudo: yes

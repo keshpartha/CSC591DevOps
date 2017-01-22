@@ -1,0 +1,25 @@
+---
+- hosts: ProxyServer
+  tasks:
+    - name: Stopping all ProxyServer services 
+      sudo: yes
+      command: forever stopall
+
+- hosts: CanaryServer
+  tasks:
+    - name: Stopping all CanaryServer services 
+      sudo: yes
+      command: forever stopall
+
+- hosts: AppServer
+  tasks:
+    - name: Stopping all AppServer services 
+      sudo: yes
+      command: forever stopall
+
+- hosts: RedisServer
+  tasks:
+    - name: Stopping all RedisServer services 
+      sudo: yes
+      command: forever stopall
+    - service: name=redis-server state=stopped

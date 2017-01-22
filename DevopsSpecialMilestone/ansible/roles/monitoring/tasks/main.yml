@@ -1,0 +1,32 @@
+---
+# tasks file for monitoring
+- name: Install pip
+  sudo: yes
+  apt: pkg=python-pip state=installed update_cache=true
+
+- name: Install pip-dev
+  sudo: yes
+  apt: pkg=python-dev state=installed update_cache=true
+
+- name: Install psutil
+  sudo: yes
+  pip: name=psutil
+
+- name: Install stress
+  sudo: yes
+  apt: pkg=stress state=installed update_cache=true
+
+- name: Install twilio rest api
+  sudo: yes
+  pip: name=twilio
+
+- name: Copy keys file
+  copy: src=/etc/keys/keys.json dest=/etc/keys/
+  sudo: yes
+
+- name: Copy monitor.py file
+  copy: src=./../monitor.py dest=./monitor.py mode=0777
+  
+- name: Start monitor.py file
+  sudo: yes
+  command: forever start -c python ./monitor.py  

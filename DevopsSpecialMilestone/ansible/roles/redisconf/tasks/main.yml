@@ -1,0 +1,5 @@
+---
+# tasks file for redisconf
+- name: Copy redis conf file
+  copy: src=./../../../redis.json dest=/etc/keys/
+  sudo: yes

@@ -1,0 +1,39 @@
+{
+  "name": "simplesets",
+  "version": "1.2.0",
+  "description": "Simple set data type, with API similar to Python's sets module.",
+  "author": "Peter Scott <pjscott@iastate.edu>",
+  "main": "./lib/simplesets.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/PeterScott/simplesets-nodejs.git"
+  },
+  "homepage": "http://github.com/PeterScott/simplesets-nodejs",
+  "scripts": {
+    "test": "node test/testsets.js"
+  },
+  "dependencies": {
+    "arrandom": "0.0.3",
+    "astring": "^0.7.1",
+    "escodegen": "^1.4.1",
+    "esprima": "^1.2.2",
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "http-proxy": "^1.15.2",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.9.3",
+    "mocha": "^3.1.2",
+    "multer": "^1.2.0",
+    "needle": "^1.3.0",
+    "node-ansible": "^0.5.5",
+    "random-js": "^1.0.8",
+    "random-maker": "^0.1.1",
+    "randomstring": "^1.1.5",
+    "recursive-readdir": "~2.1.0",
+    "redis": "^2.6.3",
+    "sleep": "^4.0.0",
+    "stacktrace-parser": "^0.1.4",
+    "tap": "^7.1.2",
+    "underscore": "^1.8.3"
+  }
+}

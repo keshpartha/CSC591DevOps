@@ -1,0 +1,65 @@
+---
+- hosts: RedisServer
+  tasks:
+    - name: restart machine
+      command: shutdown -r now "Ansible updates triggered"
+      async: 0
+      poll: 0
+      ignore_errors: true
+    - pause: seconds=30
+    - service: name=redis-server state=started enabled=yes
+    - name: start the proxy ProxyServer
+      command: forever start /src/FeatureFlags/main.js
+    - pause: seconds=10
+    - name: Check if the Feature Flags has restarted successfully
+      uri:
+       url: 'http://{{ansible_ssh_host}}:3000'
+
+- hosts: AppServer
+  tasks:
+    - name: restart machine
+      command: shutdown -r now "Ansible updates triggered"
+      async: 0
+      poll: 0
+      ignore_errors: true
+    - pause: seconds=30
+    - name: Start AppServer
+      command: forever start /src/SimpleSetsWebApp/lib/simplesets_webapp.js
+    - name: Start monitoring
+      command: forever start -c python ./monitor.py
+    - pause: seconds=10
+    - name: Check if the App has restarted successfully
+      uri:
+       url: 'http://{{ansible_ssh_host}}:3000'
+
+- hosts: CanaryServer
+  tasks:
+    - name: restart machine
+      command: shutdown -r now "Ansible updates triggered"
+      async: 0
+      poll: 0
+      ignore_errors: true
+    - pause: seconds=30
+    - name: Start AppServer
+      command: forever start /src/SimpleSetsWebApp/lib/simplesets_webapp.js
+    - name: Start monitoring
+      command: forever start -c python ./monitor.py
+
+- hosts: ProxyServer
+  tasks:
+    - name: restart machine
+      command: shutdown -r now "Ansible updates triggered"
+      async: 0
+      poll: 0
+      ignore_errors: true
+    - pause: seconds=30
+    - name: start the proxy ProxyServer
+      command: forever start /src/ProxyServer/proxy.js
+    - pause: seconds=10
+    - name: Check if the Proxy has restarted successfully
+      uri:
+       url: 'http://{{ansible_ssh_host}}:8081'
+
+
+
+
