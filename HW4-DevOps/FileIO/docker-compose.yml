@@ -1,0 +1,12 @@
+version: '2'
+services:
+  legacy:
+    build: ./LegacyContainer
+    ports:
+     - "9001:9001"
+  linkedapp:
+    build: ./LinkedContainer
+    depends_on:
+      - legacy
+    links:
+      - legacy

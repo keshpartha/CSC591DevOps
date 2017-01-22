@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for HW2-DevOps/test.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">HW2-DevOps/</a> test.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>50/50</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>50/50</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var subject = require('./mystery.js')
+var mock = require('mock-fs');
+subject.inc(-101,77);
+subject.inc(-99,9007199254740991);
+subject.inc(-101,77);
+subject.inc(-101,9007199254740991);
+subject.inc(-101,77);
+subject.inc(-100,77);
+subject.weird(87,69,41,"strictly");
+subject.weird(86,71,43,"alt-string");
+subject.weird(86,69,41,"bob");
+subject.weird(86,69,41,"alt-string");
+subject.weird(88,69,41,"stricter");
+subject.weird(87,70,42,"stricter");
+mock({"path/fileExists":{},"pathContent":{"file1":"text content"}});
+	subject.fileTest('pathContent/file1','path/fileExists');
+mock.restore();
+mock({"path/fileExists":{"file1":"some content"}});
+	subject.fileTest('pathContent/file1','path/fileExists');
+mock.restore();
+mock({"path/fileExists":{},"pathContent":{"file1":""}});
+	subject.fileTest('pathContent/file1','path/fileExists');
+mock.restore();
+mock({"pathContent":{"file1":"text content"},"path/fileExists":{"file1":"some content"}});
+	subject.fileTest('pathContent/file1','path/fileExists');
+mock.restore();
+mock({"pathContent":{"file1":""}});
+	subject.fileTest('pathContent/file1','path/fileExists');
+mock.restore();
+mock({"path/fileExists":{"file1":"some content"},"pathContent":{"file1":""}});
+	subject.fileTest('pathContent/file1','path/fileExists');
+mock.restore();
+subject.normalize('');
+subject.normalize('');
+subject.normalize('');
+subject.normalize('');
+subject.normalize('');
+subject.normalize('');
+subject.format('528-666-8994 x0362','(NNN) NNN-NNNN',{"normalize":true});
+subject.format('(795) 252-9595 x4922','###-###-####',{"normalize":null});
+subject.format('183.897.8693 x642','(NNN) NNN-NNNN',{"notNormalize":null});
+subject.format('1-363-861-6607 x927','###.###.####',{"notNormalize":true});
+subject.format('291.749.0456 x38151','(NNN) NNN-NNNN',false);
+subject.format('561-578-3998','###-###-####',true);
+subject.blackListNumber("919123456");
+subject.blackListNumber('(394) 759-4990 x358');
+subject.blackListNumber("919123456");
+subject.blackListNumber('320.605.5876');
+subject.blackListNumber("919123456");
+subject.blackListNumber('(455) 214-3531');
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Oct 14 2016 18:53:21 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
